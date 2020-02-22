@@ -15,7 +15,7 @@ Output: 4
 ```
 **Note: You may assume k is always valid, 1 ≤ k ≤ array's length.**
 
-## Implementation : Sorting
+## Implementation 1 : Sorting
 
 ```java
 class Solution {
@@ -30,4 +30,20 @@ class Solution {
     }
 }
 ```
+## Implementation 2 : Heap
 
+```java
+class Solution {
+    public int findKthLargest(int[] nums, int k) {
+       PriorityQueue<Integer> heap = new PriorityQueue<Integer>();
+        // just keep k largest elements in the min heap
+	        for (int n: nums) {
+	          heap.add(n);
+	          if (heap.size() > k)
+	            heap.poll();
+	        }
+        
+	   return heap.poll();    
+    }
+}
+```
