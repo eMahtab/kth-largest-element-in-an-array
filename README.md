@@ -29,16 +29,23 @@ class Solution {
 
 ```java
 class Solution {
+    
     public int findKthLargest(int[] nums, int k) {
-       PriorityQueue<Integer> heap = new PriorityQueue<Integer>();
-        // just keep k largest elements in the min heap
-	        for (int n: nums) {
-	          heap.add(n);
-	          if (heap.size() > k)
-	            heap.poll();
-	        }
+       PriorityQueue<Integer> minHeap = new PriorityQueue<>();
         
-	   return heap.poll();    
+       // just keep k largest elements in the min heap
+	   for (int num: nums) {
+            if(minHeap.size() < k){
+                     minHeap.add(num);
+            } else {
+                if(num > minHeap.peek()) {
+                     minHeap.poll();
+                     minHeap.add(num);
+                  }
+            }
+	    }
+        
+	   return minHeap.peek();    
     }
 }
 ```
